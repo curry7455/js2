@@ -8,7 +8,9 @@ var timer = setInterval(main, 1000/60)
 //global friction variable
 var fy = .97
 
-var player1 = [new Player()]
+var scores = document.querySelectorAll(`#score div`);
+
+var player1 = new Player();
 player1.pad = new Box()
 var p1 = player1.pad;
 
@@ -19,7 +21,6 @@ console.log(player1)
 p1.w = 20
 p1.h = 150
 p1.x = 0 + p1.w/2
-
 
 var player2 = new Player();
 
@@ -65,7 +66,7 @@ function main()
         p2.vy += p2.force;
     }
     //applies friction
-    p1.vy *= fy;
+    player[i].pad.vy *= fy;
     p2.vy *= fy;
     //player movement
     p1.move();
@@ -118,7 +119,8 @@ function main()
     //p1 with ball collision
     if(ball.collide(p1))
     {
-        ball.x = p1.x + (p1.w/2 + ball.w/2) * p1.dir
+        ball.x = p1.x + (p1.w/2 + ball.w/2) * p1.dir 
+        ;
         ball.vx = -ball.vx;
     }
     if(ball.collide(p2)) 
@@ -131,6 +133,12 @@ function main()
     p1.draw()
     p2.draw()
     ball.draw()
+    //console.log(`${player[0].score} | ${player[1].score}`)
+    for(let i=0; i<player.length; i++)
+    {
+        player[i].pad.vy *= fy;
+        scores[i].innerText=`Player ${i+1}: ${player[i].score}`
+    }
 }
    
 //*****class Player{constructor()}{
