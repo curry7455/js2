@@ -6,42 +6,39 @@ var ctx = c.getContext(`2d`)
 var timer = setInterval(main, 1000/60)
 
 //global friction variable
-var fy = .97
+var fy = .97;
 
 var scores = document.querySelectorAll(`#score div`);
 
 var player1 = new Player();
-player1.pad = new Box()
+player1.pad = new Box();
 var p1 = player1.pad;
-
-p1 = player1.pad
-console.log(player1)
 
 //p1 setup
 p1.w = 20
 p1.h = 150
 p1.x = 0 + p1.w/2
+p1.force = 1; 
+p1.dir = -1;
 
 var player2 = new Player();
-
-//p2 setup
 player2.pad = new Box();
-player2.pad.w = 20
-player2.pad.h = 150
-player2.pad.x = c.width - player2.pad.w/2
-player2.pad.color = `cyan`
+player2.pad.w = 20;
+player2.pad.h = 150;
+player2.pad.x = c.width - player2.pad.w/2;
+player2.pad.color = `cyan`;
+player2.pad.force = 1;
 var p2 = player2.pad;
 var player = [player1,player2]
 var pad = [player1.pad, player2.pad]
 
-var player = [player1, player2]
 //ball setup
 var ball = new Box();
-ball.w = 20
-ball.h = 20
-ball.vx = -2
-ball.vy = -2
-ball.color = `black`
+ball.w = 20;
+ball.h = 20;
+ball.vx = -2;
+ball.vy = -2;;
+ball.color = `black`;
 
 function main()
 {
@@ -73,7 +70,7 @@ function main()
     p2.move();
 
     //ball movement
-    ball.move()
+    ball.move();
 
     //p1 collision
     if(p1.y < 0+p1.h/2)
@@ -125,14 +122,14 @@ function main()
     }
     if(ball.collide(p2)) 
     {
-        ball.x = p1.x + (p1.w/2 + ball.w/2) *p2.dir;
+        ball.x = p2.x + (p2.w/2 + ball.w/2) * p2.dir;
         ball.vx = -ball.vx;
     }
 
     //draw the objects
-    p1.draw()
-    p2.draw()
-    ball.draw()
+    p1.draw();
+    p2.draw();
+    ball.draw();
     //console.log(`${player[0].score} | ${player[1].score}`)
     for(let i=0; i<player.length; i++)
     {
@@ -141,9 +138,3 @@ function main()
     }
 }
    
-//*****class Player{constructor()}{
-//    this.socre=0;
-//    this.highScore
-//    this.globalThis.name=``;
-//    this.pad=``;
-//}
