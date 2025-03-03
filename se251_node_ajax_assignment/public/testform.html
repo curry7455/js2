@@ -38,10 +38,38 @@
                 }
 
             //add a button
+            message += `<button class = "deleteButton">Delete</button>`
             message += `</div>`
         }
 
         output.innerHTML = message
+        
+        document.querySelectorAll(`.deleteButton`)
+        var buttons = document.querySelectorAll(`.deleteButton`)
+
+        const deleteItem = async (num) =>{
+            
+
+        }
+
+        for (let i = 0; i < buttons.length; i++){
+            buttons[i].addEventListener("click", async (e)=>{
+                await fetch("http://localhost:80/delete",
+                {
+                    method:"POST",
+                    body:
+                        JSON.stringify({index:i}),
+            
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    }
+                    
+                }
+            )
+                load()
+            })
+            
+        }
 
         //query select all the buttons
         //add event listeners to each button
