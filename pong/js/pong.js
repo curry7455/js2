@@ -19,7 +19,7 @@ p1.w = 20;
 p1.h = 150;
 p1.x = 0 + p1.w / 2;
 p1.force = 1;
-p1.dir = -1;
+p1.dir = 1;
 
 // Player 2 Setup
 var player2 = new Player();
@@ -31,6 +31,7 @@ p2.h = 150;
 p2.x = c.width - p2.w / 2;
 p2.color = `cyan`;
 p2.force = 1;
+p2.dir = -1;
 
 var player = [player1, player2];
 var pad = [p1, p2];
